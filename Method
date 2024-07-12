@@ -1,0 +1,102 @@
+AreaofaCircle
+---------------------->>
+package Interview;
+
+import java.util.Scanner;
+
+public class AreaofaCircle {
+
+	public static void main(String[] args) 
+	
+	{
+		
+		final double p = 3.141 ;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the radius");
+		int r =sc.nextInt();
+		Scanner sc1 = new Scanner(System.in);
+		System.out.println("Enter the radius");
+		int r1 =sc.nextInt();
+		double c = (p*r*r1);
+		System.out.println("Area os circle is" +c);
+
+
+
+	}
+
+}
+
+Method Example
+----------------------->>
+package JavaPackage;
+
+public class MethodExample 
+{
+
+	
+		// TODO Auto-generated method stub
+		void display()
+		{
+			System.out.println("Hello");
+			
+		}
+		
+		
+		void test()
+		{
+			System.out.println("World");
+		}
+
+		public static void main(String[] args) 
+		{
+			
+			MethodExample ob = new MethodExample();
+			ob.display();
+			ob.test();
+		
+	    }
+
+}
+
+--------------------------------------------------------------->
+
+package JavaPackage;
+
+public class MethodWithReturnType 
+{
+
+	void test()
+	{
+		System.out.println("Hello");
+	}
+	
+	int sum()
+	{
+	   
+		int a=10;
+		int b=20;
+		int c =a+b;
+		return c;		
+		
+	}
+	float multiply()
+	{
+		
+		int x= 10;
+		int y= 20;
+		int z = x*y;
+		return z;
+	}
+	
+	
+	public static void main(String[] args)
+	{
+		MethodWithReturnType ob = new MethodWithReturnType();
+		ob.test();
+		System.out.println(ob.sum());
+		System.out.println(ob.multiply());
+		
+	}
+}
+
+
