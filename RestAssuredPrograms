@@ -1,0 +1,122 @@
+First Program
+------------------------------------------------------------------------>>
+package MyPractice;
+
+import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+
+import static io.restassured.RestAssured.*;
+import static org.testng.Assert.assertEquals;
+
+import org.testng.Assert;
+
+
+public class MyFirstTest {
+
+	public static void main(String[] args) 
+	
+	 {
+		
+	     // TODO Auto-generated method stub
+		
+		
+		String firstname = "George";
+		RestAssured.baseURI ="https://reqres.in";
+		String Response = given().log().all().header("Connection","keep-alive")
+		.when().get("api/users")
+		.then().log().all().assertThat().statusCode(200).extract().response().asString();
+		
+		System.out.println(Response);
+		
+		JsonPath js = new JsonPath(Response);
+		String extractedname = js.getString("data[0].first_name");
+		
+		System.out.println(extractedname);
+	    Assert.assertEquals(firstname, extractedname);
+	    System.out.println("TC is passed");
+		
+		
+		
+	 }
+
+}
+
+//https://reqres.in/api/users/2
+
+// first_name --> This is extracted value
+//as string --- > response will be converted to string format
+
+------------------------------------------------------------------------>>
+PostRequestExample
+=======================>>
+
+package MyPractice;
+
+import io.restassured.RestAssured;
+
+import io.restassured.path.json.JsonPath;
+
+import static io.restassured.RestAssured.*;
+
+import org.junit.Assert;
+
+public class PostRequestExample {
+
+	public static void main(String[] args) 
+	
+	{
+		// TODO Auto-generated method stub
+		
+		String name = "morpheus";
+		String id = "439";
+		
+		String created ="2024-07-11";
+		RestAssured.baseURI ="https://reqres.in";
+		String response = given().log().all().header("Content-Type","application/json").header("Connection","keep-alive")
+		.body("{\n"
+				+ "    \"name\": \"morpheus\",\n"
+				+ "    \"job\": \"leader\"\n"
+				+ "}")
+		.when().post("api/users")
+		.then().log().all().assertThat().statusCode(201).extract().response().asString();
+		
+		System.out.println(response);		
+		JsonPath js = new JsonPath(response);		
+		String extractedname = js.getString("name");	
+		Assert.assertEquals(name, extractedname);
+		System.out.println("TC passed");	
+		
+		String extractedid = js.getString("createdAt");
+		
+		String[] date = extractedid.split("T");
+		System.out.println(date[0]);
+		/*	for (String x :date)	
+			{
+				if(x.equals(created))
+				{
+					System.out.println("TC passed");
+				
+				}
+				else
+				{
+					System.out.println("TC failed");
+				}
+			
+			} */
+		
+		if(date[0].equals(created))
+				{
+			System.out.println("TC passed");
+		        }
+		else
+		{
+			System.out.println("TC failed");
+		}
+			
+	
+	}
+}
+
+
+
+
